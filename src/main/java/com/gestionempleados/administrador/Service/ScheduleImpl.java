@@ -2,8 +2,10 @@
 package com.gestionempleados.administrador.Service;
 
 import com.gestionempleados.administrador.IService.ISchedule;
+import com.gestionempleados.administrador.Model.Employee;
 import com.gestionempleados.administrador.Model.Schedule;
 import com.gestionempleados.administrador.Repository.IScheduleRepository;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -29,18 +31,18 @@ public class ScheduleImpl implements ISchedule {
     }
 
     @Override
-    public void createSchedule(LocalDateTime entrySchedule, LocalDateTime exitSchedule) {       
+    public void createSchedule(Schedule schedule) {       
         
-        Schedule schedule = new Schedule();
-        schedule.setEntryTime(entrySchedule);
-        schedule.setExitTime(exitSchedule);
 
+        Duration duration = Duration.between(schedule.getEntryTime(), schedule.getExitTime());
+        schedule.setHoursWorked(duration.toHours());
+        
         scheduleRepo.save(schedule);
     }
 
     
     @Override
-    public void editSchedule(Long idOriginal, LocalDateTime entryTimeNew, LocalDateTime exitTimeNew, Long employeeIdNew) {
+    public void editSchedule(Long idOriginal, LocalDate date, boolean present, LocalDateTime entryTimeNew, LocalDateTime exitTimeNew) {
         Schedule schedule = this.getSchedule(idOriginal);
         
         schedule.setEntryTime(entryTimeNew);
@@ -52,5 +54,6 @@ public class ScheduleImpl implements ISchedule {
     public void deleteSchedule(Long id) {
         scheduleRepo.deleteById(id);
     }
-    
+
+
 }

@@ -1,13 +1,17 @@
 
 package com.gestionempleados.administrador.Model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,10 +32,10 @@ public class Employee {
     Long phone;
     Date dateHire;
     Long salary;
-    String assessment;
     String skills;
     int age;
-    @OneToOne
-    private Schedule schedule;
+    @ManyToMany
+    private List<Schedule> listaSchedule;
+    double averageSchedule;
    
 }

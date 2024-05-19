@@ -5,9 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,8 +23,12 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long id;
+    private LocalDate date;
+    private boolean present;
     private LocalDateTime entryTime;
     private LocalDateTime exitTime;
-  //  private Long employeeId; // Referencia al empleado al que pertenece este horario
+    private Long hoursWorked;
+    @ManyToMany
+    private List<Employee> listaEmployee;
     
 }

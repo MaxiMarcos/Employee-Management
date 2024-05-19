@@ -16,9 +16,9 @@ public interface ISchedule {
     
     public Schedule getSchedule(Long id);
     
-    public void createSchedule (LocalDateTime entrySchedule, LocalDateTime exitSchedule);
+    public void createSchedule (Schedule schedule);
     
-    public void editSchedule(Long idOriginal, LocalDateTime entryTimeNew, LocalDateTime exitTimeNew, Long employeeIdNew);
+    public void editSchedule(Long idOriginal, LocalDate date, boolean present, LocalDateTime entryTimeNew, LocalDateTime exitTimeNew);
     
     public void deleteSchedule (Long id);
 }

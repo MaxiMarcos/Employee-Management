@@ -48,10 +48,7 @@ public class ControllerSchedule {
     @PostMapping("/schedule/create")
     public ResponseEntity<String> createSchedule(@RequestBody Schedule schedule){
         
-       LocalDateTime entrySchedule = schedule.getEntryTime();
-       LocalDateTime exitSchedule = schedule.getExitTime();
-        
-        scheduleServ.createSchedule(entrySchedule, exitSchedule);
+        scheduleServ.createSchedule(schedule);
         
         return new ResponseEntity<>("The schedule was created successfully", HttpStatus.OK);    
     }

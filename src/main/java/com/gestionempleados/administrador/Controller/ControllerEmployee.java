@@ -48,29 +48,22 @@ public class ControllerEmployee {
     }
     
     @PostMapping("/employees/create")
-    public ResponseEntity<String> createEmployee(@RequestBody Employee employee){
-        
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
+
         employeeServ.createEmployee(employee);
         
-        return new ResponseEntity<>("The employee was created successfully", HttpStatus.OK);    
+       return new ResponseEntity<>(employee,HttpStatus.OK);    
     }
-    
-    @PutMapping("/edit")
-    public ResponseEntity<Employee> editEmployee(@PathVariable Long idOriginal,
-        @RequestParam(required = false, name = "firstname") String firstnameNew,
-        @RequestParam(required = false, name = "lastname")String lastnameNew,
-        @RequestParam(required = false, name = "email")String emailNew,
-        @RequestParam(required = false, name = "phone")Long phoneNew,
-        @RequestParam(required = false, name = "dateHire")Date dateHireNew,
-        @RequestParam(required = false, name = "salary")Long salaryNew,
-        @RequestParam(required = false, name = "assessment")String assessmentNew,
-        @RequestParam(required = false, name = "skills")String skillsNew,
-        @RequestParam(required = false, name = "age")int ageNew) {
+
+    /*
+    @PutMapping("/edit/{idOriginal}")
+    public ResponseEntity<Employee> editEmployee(@PathVariable Long idOriginal, @RequestBody Employee employee) {
         
-        employeeServ.editEmployee(idOriginal, firstnameNew, lastnameNew, emailNew, phoneNew, dateHireNew, salaryNew, assessmentNew, skillsNew, ageNew);
+        employeeServ.editEmployee(idOriginal, employee);
         
-        Employee employee = employeeServ.getEmployee(idOriginal);
+        Employee newEmployee = employeeServ.getEmployee(idOriginal);
         
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
+ */
 }
